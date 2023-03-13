@@ -55,22 +55,4 @@ public class AllRequest {
         deleteProduct.deleteProduct(id);
         return "redirect:/";
     }
-
-    @GetMapping("get")
-    String get4Buisnes(Model model){
-        model.addAttribute("list",productService.getList());
-        return "list4Buisnes";
-    }
-    @GetMapping("turnOn/{id}")
-    public String turnOn(@PathVariable("id")String id, Model model){
-        productService.setLightingStatus(id,true);
-        System.out.println("TurnOn: "+id);
-        return "redirect:/info/get";
-    }
-    @GetMapping("turnOff/{id}")
-    public String turnOff(@PathVariable("id")String id, Model model){
-        productService.setLightingStatus(id, false);
-        System.out.println("TurnOff: "+id);
-        return "redirect:/info/get";
-    }
 }

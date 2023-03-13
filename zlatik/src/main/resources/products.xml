@@ -1,0 +1,6 @@
+<products>
+    <product id="1" name="Product 1" category="Category 1" unitPrice="10.99" stockBalance="100" shippingCost="5.99" rating="4.5" discount="0.1" />
+    <product id="2" name="Product 2" category="Category 2" unitPrice="25.99" stockBalance="50" shippingCost="7.99" rating="3.8" discount="0.05" />
+    <product id="3" name="Product 3" category="Category 1" unitPrice="15.99" stockBalance="75" shippingCost="6.99" rating="4.2" discount="0.2" />
+</products>
+

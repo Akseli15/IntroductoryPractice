@@ -1,7 +1,7 @@
 package com.example.zlatik.service;
 
 import com.example.zlatik.entity.Product;
-import com.example.zlatik.repository.XMLRepo;
+import com.example.zlatik.repository.JSONRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -9,28 +9,28 @@ import java.util.List;
 @Service
 public class ProductService {
     @Autowired
-    XMLRepo xmlRepo = new XMLRepo();
+    JSONRepo jsonRepo = new JSONRepo();
 
     public List<Product> getList(){
-        return xmlRepo.findAll();
+        return jsonRepo.findAll();
     }
 
     public void saveNewObject(){
         Product newP =new Product();
-        xmlRepo.save(newP,1);
+        jsonRepo.save(newP,1);
         System.out.println("Create new empty object");
     }
 
     public void deleteProduct(String id){
-        xmlRepo.delete(Long.parseLong(id));
+        jsonRepo.delete(Long.parseLong(id));
     }
 
     public Product getObjectByID(String id){
-        return xmlRepo.findByID(Long.parseLong(id));
+        return jsonRepo.getByID(Long.parseLong(id));
     }
     public boolean saveEdit(String id, String name, String category, String unitPrice, String stockBalance, String shippingCost, String rating, String discount) {
-        Product product = xmlRepo.findByID(Long.parseLong(id));
-        XMLRepo.delete(Long.parseLong(id));
+        Product product = jsonRepo.getByID(Long.parseLong(id));
+        JSONRepo.delete(Long.parseLong(id));
 
         if(name.equals("")){
         }
@@ -80,7 +80,7 @@ public class ProductService {
             product.setDiscount(Integer.parseInt(discount));
         }
 
-        xmlRepo.save(product,0);
+        jsonRepo.save(product,0);
         return false;
     }
 }

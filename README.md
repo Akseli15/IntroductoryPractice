@@ -3,7 +3,8 @@
 Web-project developed with love.  
 
 ## Screenshots  
-![App Screenshot](https://sun9-69.userapi.com/impg/-IK3G8vVTa_oyVWLS_F8H30YHIIIR6y7F35Uvg/hkydgWJYjNk.jpg?size=1280x589&quality=96&sign=cb772eebd9a860b9c262ba3c176f5d39&type=album)  
+![App Screenshot](https://sun9-69.userapi.com/impg/-IK3G8vVTa_oyVWLS_F8H30YHIIIR6y7F35Uvg/hkydgWJYjNk.jpg?size=1280x589&quality=96&sign=cb772eebd9a860b9c262ba3c176f5d39&type=album)
+![App Screenshot](https://sun9-44.userapi.com/impg/ig9f8k657vz09EwGrY_oNoSrqWsYihQD_Fbh2g/BFr0vKrK0g8.jpg?size=1280x590&quality=96&sign=bb2fc4a2cf593adb35e57584764c7027&type=album)
 
 ## Get Started 🚀  
 To get started, copy following command (Git shold be pre-installed)!  

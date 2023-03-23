@@ -12,12 +12,13 @@ public class Product {
     private Long id;
     private String name;
     private String category;
-    private double unitPrice;
+    private int unitPrice;
     private int stockBalance;
-    private double shippingCost;
+    private int shippingCost;
     private double rating;
     private double discount;
     public Product() {
+        this.id=Long.parseLong("-1");
         this.name = null;
         this.category = null;
         this.unitPrice = 0;
@@ -27,8 +28,9 @@ public class Product {
         this.discount = 0;
     }
 
-    public Product(String name, String category, double unitPrice, int stockBalance,
-                   double shippingCost, double rating, double discount) {
+    public Product(Long id, String name, String category, int unitPrice, int stockBalance,
+                   int shippingCost, double rating, double discount) {
+        this.id=id;
         this.name = name;
         this.category = category;
         this.unitPrice = unitPrice;
@@ -47,13 +49,13 @@ public class Product {
     public void setCategory(String category) {
         this.category = category;
     }
-    public void setUnitPrice(double unitPrice) {
+    public void setUnitPrice(int unitPrice) {
         this.unitPrice = unitPrice;
     }
     public void setStockBalance(int stockBalance) {
         this.stockBalance = stockBalance;
     }
-    public void setShippingCost(double shippingCost) {
+    public void setShippingCost(int shippingCost) {
         this.shippingCost = shippingCost;
     }
     public void setRating(double rating) {

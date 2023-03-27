@@ -9,5 +9,7 @@ public interface IProductService {
     void deleteProduct(String id);
     Product getProductID(String id);
     Product update(Product product);
+    double totalPrice(Long id, int quantity);
+    boolean doSale(Long id, int stockBalance);
 }
 

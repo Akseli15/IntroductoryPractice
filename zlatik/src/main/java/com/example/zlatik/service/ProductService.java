@@ -2,6 +2,7 @@ package com.example.zlatik.service;
 
 import com.example.zlatik.entity.Product;
 import com.example.zlatik.repository.IProductRepository;
+import com.example.zlatik.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
@@ -46,6 +47,17 @@ public class ProductService implements IProductService {
     }
 
     @Async
-    public Product totalPrice(Product product){
+    public double totalPrice(Long id, int quantity){
+        Product product = jsonRepo.getByID(id);
+        return (product.getUnitPrice() * quantity) * (1 - (product.getDiscount() / 100)) + product.getShippingCost();
+    }
+
+    @Async
+    public boolean doSale(Long id, int stockBalance){
+        Product product = jsonRepo.getByID(id);
+        if (product.getStockBalance() < stockBalance) {
+            return false;
+        }
+        return true;
     }
 }

@@ -81,38 +81,37 @@ public class ProductController {
         return "redirect:/";
     }
     @Async
-    @PostMapping("")
-    public Order sellProduct(@RequestBody SaleRequest saleRequest) {
-        Long productId = saleRequest.getProductId();
-        int quantity = saleRequest.getStockBalance();
-        Product product = productService.getProductById(productId);
-        int availableStock = product.getStockBalance();
-
-        if (availableStock < quantity) {
-            throw new OutOfStockException("Product is out of stock.");
-        }
-
-        double unitPrice = product.getUnitPrice();
-        double discount = product.getDiscount();
-        double shippingCost = product.getShippingCost();
-
-        double totalPrice = (unitPrice * quantity) * (1 - (discount / 100)) + shippingCost;
-
-        product.setStockBalance(availableStock - quantity);
-        productService.update(Product, product);
-
-        Order order = new Order();
-        order.setProductId(productId);
-        order.setQuantity(quantity);
-        order.setUnitPrice(unitPrice);
-        order.setDiscount(discount);
-        order.setShippingCost(shippingCost);
-        order.setTotalPrice(totalPrice);
-
-        return order;
+    @PostMapping("totalPrice")
+    public String totalPrice(@PathVariable("id") String id,
+                             @RequestParam(value = "stockBalance", required = false) String stockBalance) {
+        double sum = productService.totalPrice(Long.parseLong(id),Integer.parseInt(stockBalance));
+        return "redirect:/totalPrice/"+id+"/"+sum;
     }
 
+    /* @Async
+    @GetMapping("totalPrice/{id}/{sum}")
+    public String setTotalPrice(@PathVariable("id") String id, @PathVariable("sum") String sum){
+
+    } */
+
     @Async
+    @PostMapping("sellProduct")
+    public String sellProduct(@PathVariable("id") String id,
+                              @RequestParam(value = "stockBalance", required = false) String stockBalance) {
+
+        int quantity = Integer.parseInt(stockBalance);
+        Product product = productService.getProductID(id);
+        int availableStock = product.getStockBalance();
+
+        if (!productService.doSale(Long.parseLong(id),Integer.parseInt(stockBalance))) {
+            return "error";
+        }
+        product.setStockBalance(product.getStockBalance()-Integer.parseInt(stockBalance));
+        productService.update(product);
+        return "redirect:/";
+    }
+
+    /* @Async
     @PostMapping("/replenish/{id}")
     public Stock replenishStock(@PathVariable("id") Long id, @RequestBody StockUpdateRequest stockUpdateRequest) {
         Product product = productService.getProductID(id);
@@ -127,5 +126,5 @@ public class ProductController {
         stock.setQuantity(newStock);
 
         return stock;
-    }
+    } */
 }

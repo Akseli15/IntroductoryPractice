@@ -59,7 +59,7 @@ td button {
     align-content: center;
     left:60%;
     padding: 10px;
-    font-size: 20px;
+    font-size: 16px;
     font-family: 'Inconsolata', sans-serif;
     text-align: center;
     box-shadow: 0 0 10px rgba(0,0,0,0.15);
@@ -106,3 +106,4 @@ input{
     border-bottom: 1px solid #ddd;
   }
 }
+

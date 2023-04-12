@@ -17,7 +17,7 @@ import java.util.Optional;
 
 @Repository
 public class ProductRepository implements IProductRepository {
-    private final static String fileName = "D:\\Выполненные работы\\2 курс\\4 семестр\\Ознакомительная практика 2 курс\\zlatik\\src\\main\\resources\\products.json";
+    private final String fileName = "zlatik/src/main/resources/products.json";
     private Gson gson;
 
     private Comparator<Product> idComparator = new Comparator<Product>() {

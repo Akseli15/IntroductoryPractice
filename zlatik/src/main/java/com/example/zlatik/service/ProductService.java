@@ -2,7 +2,6 @@ package com.example.zlatik.service;
 
 import com.example.zlatik.entity.Product;
 import com.example.zlatik.repository.IProductRepository;
-import com.example.zlatik.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;

@@ -1,5 +1,6 @@
 package com.example.zlatik.controller;
 
+import com.example.zlatik.entity.Bin;
 import com.example.zlatik.entity.Product;
 import com.example.zlatik.service.IProductService;
 import jakarta.persistence.criteria.Order;
@@ -88,12 +89,6 @@ public class ProductController {
         return "redirect:/totalPrice/"+id+"/"+sum;
     }
 
-    /* @Async
-    @GetMapping("totalPrice/{id}/{sum}")
-    public String setTotalPrice(@PathVariable("id") String id, @PathVariable("sum") String sum){
-
-    } */
-
     @Async
     @PostMapping("sellProduct")
     public String sellProduct(@PathVariable("id") String id,
@@ -111,20 +106,17 @@ public class ProductController {
         return "redirect:/";
     }
 
-    /* @Async
-    @PostMapping("/replenish/{id}")
-    public Stock replenishStock(@PathVariable("id") Long id, @RequestBody StockUpdateRequest stockUpdateRequest) {
+    @Async
+    @PostMapping("replenishProduct")
+    public String replenishProduct(@PathVariable("id") String id,
+                              @RequestParam(value = "stockBalance", required = false) String stockBalance) {
+        int quantityToAdd = Integer.parseInt(stockBalance);
         Product product = productService.getProductID(id);
         int currentStock = product.getStockBalance();
-        int quantityToAdd = stockUpdateRequest.getQuantity();
+
         int newStock = currentStock + quantityToAdd;
         product.setStockBalance(newStock);
-        productService.updateProduct(id, product);
-
-        Stock stock = new Stock();
-        stock.setProductId(id);
-        stock.setQuantity(newStock);
-
-        return stock;
-    } */
+        productService.update(product);
+        return "redirect:/";
+    }
 }

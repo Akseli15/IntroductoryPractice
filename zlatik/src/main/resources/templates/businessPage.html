@@ -37,12 +37,13 @@
                     <td th:text="${product.getRating}"></td>
                     <td th:text="${product.getDiscount}"></td>
                     <td><input th:value="${product.setQuantity}" type="text" id="quantity" name="quantity"></td>
+                   <td><a th:href="@{/addToBin/{id}(id=${product.getId})}"><button class="btn1" type="button">Add to bin</button></a></td>
                 </form>
             </tr>
             <tr>
                 <td colspan="5">
                     <div class="tableFooter">
-                        <a th:href="@{/sell/{id}(id=${product.getId})}"><button class="btn1" type="button">Add to bin</button></a>
+                        <a th:href="@{/bin}"><button class="btn1" type="button">To bin</button></a>
                     </div>
                 </td>
             </tr>

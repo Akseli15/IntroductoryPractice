@@ -26,6 +26,8 @@ public class ProductController {
     public ProductController(IProductService productService) {
         this.productService = productService;
     }
+
+    //admin
     @Async
     @GetMapping("")
     public String test(Model model) {
@@ -73,18 +75,26 @@ public class ProductController {
         System.out.println("Save object controller");
         return "redirect:/";
     }
-    @Async
-    @GetMapping("error")
-    public String error() {
-        return "test";
-    }
+
     @Async
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable("id") String id) {
         productService.deleteProduct(id);
         return "redirect:/";
     }
-
+    //Business
+    @Async
+    @GetMapping("/market")
+    public String getListProduct(Model model){
+        model.addAttribute("product",productService.getList());
+        return "businessPage";
+    }
+    @Async
+    @GetMapping("addToBin/{id}")
+    public String addToBin(@PathVariable("id") String id){
+        binService.addNewBin(id);
+        return "redirect:/market";
+    }
     //Bin
     @Async
     @GetMapping("bin")
@@ -93,7 +103,14 @@ public class ProductController {
         model.addAttribute("totalPrice",binService.totalPrice());
         return "binPage";
     }
+
+
     /*@Async
     @PostMapping("/bin/edit/{id}")
     public String postBinData(PathVariable("id") String id, ...) //Сама допишешь, не сломаешься*/
+    @Async
+    @GetMapping("error")
+    public String error() {
+        return "test";
+    }
 }

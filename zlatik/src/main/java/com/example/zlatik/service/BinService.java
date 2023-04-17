@@ -39,6 +39,12 @@ public class BinService {
         }
         return products;
     }
+    @Async
+    public void addNewBin(String id){
+        Bin bin = new Bin();
+        bin.setId(Long.parseLong(id));
+        binRepository.save(bin);
+    }
 
     @Async
     public boolean doSale(Long id, int stockBalance){

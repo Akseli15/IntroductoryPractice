@@ -88,4 +88,18 @@ public class Product {
     public double getDiscount() {
         return discount;
     }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", category='" + category + '\'' +
+                ", unitPrice=" + unitPrice +
+                ", stockBalance=" + stockBalance +
+                ", shippingCost=" + shippingCost +
+                ", rating=" + rating +
+                ", discount=" + discount +
+                '}';
+    }
 }

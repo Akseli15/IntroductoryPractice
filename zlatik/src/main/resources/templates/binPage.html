@@ -25,15 +25,15 @@
                 </tr>
             </thead>
             <tbody>
-            <tr th:each="bin: ${bin}">
-               <form th:action="'/edit/' + ${product.getId}" method="post">
-                    <td th:text="${product.getName}"></td>
-                   <td><input th:value="${product.getQuantity}" type="number" min="1" max="${product.getStockBalance}" id="quantity" name="quantity"></td>
-                    <td th:text="${product.getShippingCost}"></td>
-                    <td th:text="${product.getUnitPrice}"></td>
-                   <td><a th:href="@{/edit/{id}(id=${product.getId})}">✅</a>
-                       <a th:href="@{/delete/{id} (id =${product.getId()})}">❎</a></td>
-                </form>
+            <tr th:each="product: ${product}">
+                    <form th:action="'/edit/' + ${product.getId}" method="post">
+                        <td th:text="${product.getName}"></td>
+                       <!--<td><input th:value="${bin.getQuantity}" type="number" min="1" max="${product.getStockBalance}" id="quantity" name="quantity"></td>-->
+                        <td th:text="${product.getShippingCost}"></td>
+                        <td th:text="${product.getUnitPrice}"></td>
+                       <td><a th:href="@{/edit/{id}(id=${product.getId})}">✅</a>
+                           <a th:href="@{/delete/{id} (id =${product.getId()})}">❎</a></td>
+                    </form>
             </tr>
             <tr>
                 <td colspan="4">Total price</td>
@@ -41,7 +41,7 @@
             </tr>
         </tbody>
         </table>
-        <button method="submit">Sale</button>
+        <a th:href="@{/sale}"><button>Sale</button></a>
     </main>
 </body>
 </html>

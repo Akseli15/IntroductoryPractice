@@ -99,11 +99,17 @@ public class ProductController {
     @Async
     @GetMapping("bin")
     public String getBinData(Model model){
-        model.addAttribute("bin",binService.getBinProduct());
+        model.addAttribute("product",binService.getBinProduct());
+        model.addAttribute("bin",binService.getBinList());
         model.addAttribute("totalPrice",binService.totalPrice());
         return "binPage";
     }
-
+    @Async
+    @GetMapping("sale")
+    public String sale(){
+        binService.doSale();
+        return "redirect:/market";
+    }
 
     /*@Async
     @PostMapping("/bin/edit/{id}")

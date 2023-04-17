@@ -7,7 +7,7 @@ import jakarta.persistence.Id;
 
 @Entity
 public class Bin {
-    private @Id @GeneratedValue Long id;
+    private @Id Long id;
     private int quantity;
 
     public Bin() {

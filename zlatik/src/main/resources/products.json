@@ -1,1 +1,1 @@
-[{"id":1,"name":"aboba","category":"aboba","unitPrice":10,"stockBalance":10,"shippingCost":10,"rating":10.0,"discount":10.0},{"id":2,"unitPrice":0,"stockBalance":0,"shippingCost":0,"rating":0.0,"discount":0.0}]
+[{"id":1,"name":"aboba","category":"aboba","unitPrice":10,"stockBalance":9,"shippingCost":10,"rating":10.0,"discount":10.0},{"id":2,"unitPrice":0,"stockBalance":0,"shippingCost":0,"rating":0.0,"discount":0.0}]

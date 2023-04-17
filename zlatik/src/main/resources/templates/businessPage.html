@@ -27,7 +27,6 @@
         </thead>
         <tbody>
             <tr th:each="product: ${product}">
-               <form th:action="@{/sell/{id}(id=${product.getId})}" method="post">
                     <td th:text="${product.getId}"></td>
                     <td th:text="${product.getName}"></td>
                     <td th:text="${product.getCategory}"></td>
@@ -36,9 +35,7 @@
                     <td th:text="${product.getShippingCost}"></td>
                     <td th:text="${product.getRating}"></td>
                     <td th:text="${product.getDiscount}"></td>
-                    <td><input th:value="${product.setQuantity}" type="text" id="quantity" name="quantity"></td>
                    <td><a th:href="@{/addToBin/{id}(id=${product.getId})}"><button class="btn1" type="button">Add to bin</button></a></td>
-                </form>
             </tr>
             <tr>
                 <td colspan="5">

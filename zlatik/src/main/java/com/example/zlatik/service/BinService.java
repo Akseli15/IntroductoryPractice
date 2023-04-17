@@ -35,24 +35,29 @@ public class BinService {
         List<Product> products = new ArrayList<>();
         List<Bin> allBin=binRepository.findAll();
         for (int i=0;i<allBin.size();i++){
-            products.add(jsonRepo.getByID(allBin.get(i).getId()));
+            Product product = jsonRepo.getByID(allBin.get(i).getId());
+            products.add(product);
         }
         return products;
     }
     @Async
+    public List<Bin> getBinList(){
+        return binRepository.findAll();
+    }
+    @Async
     public void addNewBin(String id){
-        Bin bin = new Bin();
-        bin.setId(Long.parseLong(id));
+        Bin bin = new Bin(Long.parseLong(id),1);
         binRepository.save(bin);
     }
 
     @Async
-    public boolean doSale(Long id, int stockBalance){
-        Product product = jsonRepo.getByID(id);
-        if (product.getStockBalance() < stockBalance) {
-            return false;
+    public void doSale(){
+        List<Bin> binList = binRepository.findAll();
+        for (int i=0;i<binList.size();i++){
+            Product product = jsonRepo.getByID(binList.get(i).getId());
+            product.setStockBalance(product.getStockBalance()-binList.get(i).getQuantity());
+            jsonRepo.update(product);
         }
         binRepository.deleteAll();
-        return true;
     }
 }

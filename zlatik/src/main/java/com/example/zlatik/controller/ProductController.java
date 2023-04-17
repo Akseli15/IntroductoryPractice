@@ -61,8 +61,8 @@ public class ProductController {
                                @RequestParam(value = "discount", required = false) String discount) {
         Product product = new Product(
                 Long.parseLong(id),
-                String.join(name),
-                String.join(category),
+                name,
+                category,
                 Integer.parseInt(unitPrice),
                 Integer.parseInt(stockBalance),
                 Integer.parseInt(shippingCost),
@@ -82,36 +82,6 @@ public class ProductController {
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable("id") String id) {
         productService.deleteProduct(id);
-        return "redirect:/";
-    }
-    @Async
-    @PostMapping("sellProduct")
-    public String sellProduct(@PathVariable("id") String id,
-                              @RequestParam(value = "stockBalance", required = false) String stockBalance) {
-
-        int quantity = Integer.parseInt(stockBalance);
-        Product product = productService.getProductID(id);
-        int availableStock = product.getStockBalance();
-
-        if (!binService.doSale(Long.parseLong(id),Integer.parseInt(stockBalance))) {
-            return "error";
-        }
-        product.setStockBalance(product.getStockBalance()-Integer.parseInt(stockBalance));
-        productService.update(product);
-        return "redirect:/";
-    }
-
-    @Async
-    @PostMapping("replenishProduct")
-    public String replenishProduct(@PathVariable("id") String id,
-                              @RequestParam(value = "stockBalance", required = false) String stockBalance) {
-        int quantityToAdd = Integer.parseInt(stockBalance);
-        Product product = productService.getProductID(id);
-        int currentStock = product.getStockBalance();
-
-        int newStock = currentStock + quantityToAdd;
-        product.setStockBalance(newStock);
-        productService.update(product);
         return "redirect:/";
     }
 

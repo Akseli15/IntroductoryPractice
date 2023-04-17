@@ -35,14 +35,14 @@
                 <td th:text="${product.getShippingCost}"></td>
                 <td th:text="${product.getRating}"></td>
                 <td th:text="${product.getDiscount}"></td>
-                <td><a th:href="@{/{id}(id=${product.getId})}"
+                <td><a th:href="@{edit/{id}(id=${product.getId})}"
                        class="button">Edit</a></td>
             </tr>
         </tbody>
     </table>
     </form>
-
-    <form class="form1" th:action="@{/}" method="post">
+    /
+    <form class="form1" th:action="@{/create}" method="post">
         <button class="btn1" type="submit" method="post" >ADD NEW PRODUCT</button>
     </form>
 </body>

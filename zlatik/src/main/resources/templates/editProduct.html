@@ -34,15 +34,13 @@
                     <td><input th:value="${product.getShippingCost}" type="text" id="shippingCost" name="shippingCost"></td>
                     <td><input th:value="${product.getRating}" type="text" id="rating" name="rating"></td>
                     <td><input th:value="${product.getDiscount}" type="text" id="discount" name="discount"></td>
-                </form>
-            </tr>
-            <tr>
                 <td colspan="5">
                     <div class="tableFooter">
                         <a th:href="@{/delete/{id}(id=${product.getId})}"><button class="btn1" type="button">Delete</button></a>
-                        <a th:href="'/edit/' + ${product.getId}"><button class="btn1" type="submit">Edit</button></a>
+                        <button class="btn1" type="submit">Edit</button>
                     </div>
                 </td>
+               </form>
             </tr>
         </tbody>
     </table>

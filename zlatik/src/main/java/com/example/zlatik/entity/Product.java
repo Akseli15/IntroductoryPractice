@@ -73,13 +73,13 @@ public class Product {
     public String getCategory() {
         return category;
     }
-    public double getUnitPrice() {
+    public int getUnitPrice() {
         return unitPrice;
     }
     public int getStockBalance() {
         return stockBalance;
     }
-    public double getShippingCost() {
+    public int getShippingCost() {
         return shippingCost;
     }
     public double getRating() {

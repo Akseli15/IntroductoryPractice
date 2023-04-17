@@ -50,15 +50,12 @@ td button {
 .btn1{
     color:#fff;
     background:#04724D;
-    width: 20%;
     position: relative;
     text-align: center;
     margin-top: 2%;
     border-radius: 4px;
     border: none;
     align-content: center;
-    left:35%;
-    right: 65%;
     padding: 10px;
     font-size: 20px;
     font-family: 'Inconsolata', sans-serif;
@@ -66,7 +63,7 @@ td button {
     box-shadow: 0 0 10px rgba(0,0,0,0.15);
 }
 input{
-    width: 150px;
+    width: 100px;
     color: #04724D;
     text-align: center;
     font-size: 20px;

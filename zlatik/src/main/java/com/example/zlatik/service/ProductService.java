@@ -44,19 +44,4 @@ public class ProductService implements IProductService {
         jsonRepo.update(product);
         return jsonRepo.getByID(product.getId());
     }
-
-    @Async
-    public double totalPrice(Long id, int quantity){
-        Product product = jsonRepo.getByID(id);
-        return (product.getUnitPrice() * quantity) * (1 - (product.getDiscount() / 100)) + product.getShippingCost();
-    }
-
-    @Async
-    public boolean doSale(Long id, int stockBalance){
-        Product product = jsonRepo.getByID(id);
-        if (product.getStockBalance() < stockBalance) {
-            return false;
-        }
-        return true;
-    }
 }

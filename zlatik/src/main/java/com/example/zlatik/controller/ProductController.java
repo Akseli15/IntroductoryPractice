@@ -1,7 +1,7 @@
 package com.example.zlatik.controller;
 
-import com.example.zlatik.entity.Bin;
 import com.example.zlatik.entity.Product;
+import com.example.zlatik.service.BinService;
 import com.example.zlatik.service.IProductService;
 import jakarta.persistence.criteria.Order;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +19,7 @@ public class ProductController {
 
     @Autowired
     IProductService productService;
+    BinService binService;
 
     public ProductController(IProductService productService) {
         this.productService = productService;
@@ -81,13 +82,13 @@ public class ProductController {
         productService.deleteProduct(id);
         return "redirect:/";
     }
-    @Async
+    /* @Async
     @PostMapping("totalPrice")
     public String totalPrice(@PathVariable("id") String id,
                              @RequestParam(value = "stockBalance", required = false) String stockBalance) {
         double sum = productService.totalPrice(Long.parseLong(id),Integer.parseInt(stockBalance));
         return "redirect:/totalPrice/"+id+"/"+sum;
-    }
+    }  */
 
     @Async
     @PostMapping("sellProduct")
@@ -98,7 +99,7 @@ public class ProductController {
         Product product = productService.getProductID(id);
         int availableStock = product.getStockBalance();
 
-        if (!productService.doSale(Long.parseLong(id),Integer.parseInt(stockBalance))) {
+        if (!binService.doSale(Long.parseLong(id),Integer.parseInt(stockBalance))) {
             return "error";
         }
         product.setStockBalance(product.getStockBalance()-Integer.parseInt(stockBalance));

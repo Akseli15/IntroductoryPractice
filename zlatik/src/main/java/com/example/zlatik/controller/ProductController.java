@@ -3,6 +3,7 @@ package com.example.zlatik.controller;
 import com.example.zlatik.entity.Product;
 import com.example.zlatik.service.BinService;
 import com.example.zlatik.service.IProductService;
+import jakarta.jws.WebParam;
 import jakarta.persistence.criteria.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
@@ -19,6 +20,7 @@ public class ProductController {
 
     @Autowired
     IProductService productService;
+    @Autowired
     BinService binService;
 
     public ProductController(IProductService productService) {
@@ -83,14 +85,6 @@ public class ProductController {
         return "redirect:/";
     }
     @Async
-    @PostMapping("totalPrice")
-    public String totalPrice(@PathVariable("id") String id,
-                             @RequestParam(value = "stockBalance", required = false) String stockBalance) {
-        double sum = binService.totalPrice(Long.parseLong(id),Integer.parseInt(stockBalance));
-        return "redirect:/totalPrice/"+id+"/"+sum;
-    }
-
-    @Async
     @PostMapping("sellProduct")
     public String sellProduct(@PathVariable("id") String id,
                               @RequestParam(value = "stockBalance", required = false) String stockBalance) {
@@ -120,4 +114,16 @@ public class ProductController {
         productService.update(product);
         return "redirect:/";
     }
+
+    //Bin
+    @Async
+    @GetMapping("bin")
+    public String getBinData(Model model){
+        model.addAttribute("bin",binService.getBinProduct());
+        model.addAttribute("totalPrice",binService.totalPrice());
+        return "binPage";
+    }
+    /*@Async
+    @PostMapping("/bin/edit/{id}")
+    public String postBinData(PathVariable("id") String id, ...) //Сама допишешь, не сломаешься*/
 }

@@ -8,6 +8,8 @@ import com.example.zlatik.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -15,17 +17,27 @@ public class BinService {
 
     @Autowired
     IProductRepository jsonRepo;
+    @Autowired
     BinRepository binRepository;
 
     @Async
-    public double totalPrice(Long id, int quantity){
+    public double totalPrice(){
         List<Bin> allBin=binRepository.findAll();
         double totalPrice = 0;
         for (int i=0;i<allBin.size();i++){
             Product product = jsonRepo.getByID(allBin.get(i).getId());
-            totalPrice += (product.getUnitPrice() * quantity) * (1 - (product.getDiscount() / 100)) + product.getShippingCost();
+            totalPrice += (product.getUnitPrice() * allBin.get(i).getQuantity()) * (1 - (product.getDiscount() / 100)) + product.getShippingCost();
         }
         return totalPrice;
+    }
+    @Async
+    public List<Product> getBinProduct(){
+        List<Product> products = new ArrayList<>();
+        List<Bin> allBin=binRepository.findAll();
+        for (int i=0;i<allBin.size();i++){
+            products.add(jsonRepo.getByID(allBin.get(i).getId()));
+        }
+        return products;
     }
 
     @Async

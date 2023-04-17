@@ -9,15 +9,13 @@ import jakarta.persistence.Id;
 public class Bin {
     private @Id @GeneratedValue Long id;
     private int quantity;
-    private double shippingcost;
 
     public Bin() {
     }
 
-    public Bin(Long id, int quantity, double shippingcost) {
+    public Bin(Long id, int quantity) {
         this.id = id;
         this.quantity = quantity;
-        this.shippingcost = shippingcost;
     }
 
     public Long getId() {
@@ -36,11 +34,4 @@ public class Bin {
         this.quantity = quantity;
     }
 
-    public double getShippingcost() {
-        return shippingcost;
-    }
-
-    public void setShippingcost(double shippingcost) {
-        this.shippingcost = shippingcost;
-    }
 }

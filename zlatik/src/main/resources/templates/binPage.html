@@ -21,24 +21,27 @@
                     <th>Quantity</th>
                     <th>Shipping Cost</th>
                     <th>Unit Price</th>
+                    <th>Accept updates</th>
                 </tr>
             </thead>
             <tbody>
             <tr th:each="bin: ${bin}">
                <form th:action="'/edit/' + ${product.getId}" method="post">
                     <td th:text="${product.getName}"></td>
-                    <td th:text="${product.getQuantity}"></td>
+                   <td><input th:value="${product.getQuantity}" type="number" min="1" max="${product.getStockBalance}" id="quantity" name="quantity"></td>
                     <td th:text="${product.getShippingCost}"></td>
                     <td th:text="${product.getUnitPrice}"></td>
+                   <td><a th:href="@{/edit/{id}(id=${product.getId})}">✅</a>
+                       <a th:href="@{/delete/{id} (id =${product.getId()})}">❎</a></td>
                 </form>
             </tr>
             <tr>
-                <td colspan="3">Total price</td>
+                <td colspan="4">Total price</td>
                 <td>Here should be total price</td>
             </tr>
         </tbody>
         </table>
-        <button>Sale</button>
+        <button method="submit">Sale</button>
     </main>
 </body>
 </html>

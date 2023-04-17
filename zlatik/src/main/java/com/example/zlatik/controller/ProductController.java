@@ -82,13 +82,13 @@ public class ProductController {
         productService.deleteProduct(id);
         return "redirect:/";
     }
-    /* @Async
+    @Async
     @PostMapping("totalPrice")
     public String totalPrice(@PathVariable("id") String id,
                              @RequestParam(value = "stockBalance", required = false) String stockBalance) {
-        double sum = productService.totalPrice(Long.parseLong(id),Integer.parseInt(stockBalance));
+        double sum = binService.totalPrice(Long.parseLong(id),Integer.parseInt(stockBalance));
         return "redirect:/totalPrice/"+id+"/"+sum;
-    }  */
+    }
 
     @Async
     @PostMapping("sellProduct")

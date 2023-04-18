@@ -26,12 +26,12 @@
             </thead>
             <tbody>
             <tr th:each="binDTO: ${product}">
-                    <form th:action="'/edit/' + ${binDTO.getId}" method="post">
+                    <form th:action="'/bin/edit/' + ${binDTO.getId}" method="post">
                         <td th:text="${binDTO.getProductName}"></td>
                        <td><input th:value="${binDTO.getQuantity}" type="number" min="1" max="${binDTO.getStockBalance}" id="quantity" name="quantity"></td>
                         <td th:text="${binDTO.getShippingCost}"></td>
                         <td th:text="${binDTO.getUnitPrice}"></td>
-                       <td><a th:href="@{/edit/{id}(id=${binDTO.getId})}">✅</a>
+                       <td><button type="submit"> ✅</button>
                            <a th:href="@{/delete/{id} (id =${binDTO.getId()})}">❎</a></td>
                     </form>
             </tr>

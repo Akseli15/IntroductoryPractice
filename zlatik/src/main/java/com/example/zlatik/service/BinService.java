@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BinService {
@@ -62,5 +63,15 @@ public class BinService {
             jsonRepo.update(product);
         }
         binRepository.deleteAll();
+    }
+    @Async
+    public boolean editQuantity(String id,String quantity){
+        Optional<Bin> bin = binRepository.findById(Long.parseLong(id));
+        if(jsonRepo.getByID(bin.get().getId()).getStockBalance()<Integer.parseInt(quantity)){
+            return false;
+        }
+        bin.get().setQuantity(Integer.parseInt(quantity));
+        binRepository.save(bin.get());
+        return true;
     }
 }

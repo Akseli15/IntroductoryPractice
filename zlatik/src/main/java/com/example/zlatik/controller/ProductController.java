@@ -110,6 +110,16 @@ public class ProductController {
         return "redirect:/market";
     }
     @Async
+    @PostMapping("/bin/edit/{id}")
+    public String editBin(@PathVariable("id") String id,@RequestParam(value = "quantity", required = false) String quantity){
+        System.out.println(quantity);
+        if(binService.editQuantity(id,quantity)){
+            return "redirect:/bin";
+        }
+        return "redirect:/error";
+    }
+
+    @Async
     @GetMapping("error")
     public String error() {
         return "test";

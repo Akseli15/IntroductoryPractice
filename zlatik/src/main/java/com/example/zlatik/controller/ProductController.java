@@ -100,7 +100,6 @@ public class ProductController {
     @GetMapping("bin")
     public String getBinData(Model model){
         model.addAttribute("product",binService.getBinProduct());
-        model.addAttribute("bin",binService.getBinList());
         model.addAttribute("totalPrice",binService.totalPrice());
         return "binPage";
     }
@@ -110,10 +109,6 @@ public class ProductController {
         binService.doSale();
         return "redirect:/market";
     }
-
-    /*@Async
-    @PostMapping("/bin/edit/{id}")
-    public String postBinData(PathVariable("id") String id, ...) //Сама допишешь, не сломаешься*/
     @Async
     @GetMapping("error")
     public String error() {

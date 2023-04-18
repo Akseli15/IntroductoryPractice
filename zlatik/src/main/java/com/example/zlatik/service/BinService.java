@@ -1,5 +1,6 @@
 package com.example.zlatik.service;
 
+import com.example.zlatik.controller.DTO.BinDTO;
 import com.example.zlatik.entity.Bin;
 import com.example.zlatik.entity.Product;
 import com.example.zlatik.repository.BinRepository;
@@ -31,18 +32,20 @@ public class BinService {
         return totalPrice;
     }
     @Async
-    public List<Product> getBinProduct(){
-        List<Product> products = new ArrayList<>();
+    public List<BinDTO> getBinProduct(){
+        List<BinDTO> products = new ArrayList<>();
         List<Bin> allBin=binRepository.findAll();
         for (int i=0;i<allBin.size();i++){
             Product product = jsonRepo.getByID(allBin.get(i).getId());
-            products.add(product);
+            BinDTO binDTO = new BinDTO(product.getId(),
+                    product.getName(),
+                    allBin.get(i).getQuantity(),
+                    product.getShippingCost(),
+                    product.getUnitPrice(),
+                    product.getStockBalance());
+            products.add(binDTO);
         }
         return products;
-    }
-    @Async
-    public List<Bin> getBinList(){
-        return binRepository.findAll();
     }
     @Async
     public void addNewBin(String id){
